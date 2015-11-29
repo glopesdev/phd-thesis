@@ -177,6 +177,12 @@
 \usepackage{multirow}
 \usepackage[labelfont=it,labelsep=period]{caption}
 
+%epigraph packages
+\usepackage{epigraph}
+\let\originalepigraph\epigraph 
+\renewcommand\epigraph[2]{\originalepigraph{\textit{#1}}{#2}}
+\setlength{\epigraphwidth}{0.8\textwidth}
+
 %%%% Define commands
 
 % Define any custom commands that you want to use.
@@ -275,6 +281,7 @@
 %\include lets  us split up the document (and each include starts a new page):
 
 \chapter{Towards a Teleology of Cortical Motor Control}
+\epigraph{The purpose of a reflex seems as legitimate and urgent an object for natural inquiry as the purpose of the colouring of an insect or a blossom. And the importance to physiology is, that the reflex reaction cannot be really intelligible to the physiologist until he knows its aim.}{\textsc{Sir Charles S. Sherrington}, \textit{The Integrative Action of the Nervous System} (1906)}
 \include{chapters/chTeleology}
 
 \chapter{Neurotechnology for Behaviour}
