@@ -17,5 +17,6 @@ NPP_SAVE
 7. Assign Notepad++ plugin command
 
 For SVG conversion:
+
 1. Install Inkscape
 2. Add Inkscape to PATH
