@@ -1,0 +1,1 @@
+^(annote|file|abstract|doi|issn|pmid|keywords|isbn|eprint|arxivId|archivePrefix).*$\r?\n
