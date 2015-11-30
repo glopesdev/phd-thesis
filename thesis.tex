@@ -189,6 +189,18 @@
 \renewcommand\epigraph[2]{\originalepigraph{\textit{#1}}{#2}}
 \setlength{\epigraphwidth}{0.8\textwidth}
 
+%SVG packages
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{pdftexcmds}
+  \makeatletter
+  \let\pdfstrcmp\pdf@strcmp
+  \let\pdffilemoddate\pdf@filemoddate
+  \makeatother
+\fi
+\usepackage{svg}
+\graphicspath{{chapters/figuresChTools/}}
+
 %%%% Define commands
 
 % Define any custom commands that you want to use.
