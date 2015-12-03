@@ -30,6 +30,15 @@ Animals were run on \SI{30}{\minute} sessions every day of the week from Monday 
 \label{fig:shuttlingSteps}
 \end{figure}
 
+\begin{figure}
+\begin{center}
+\includesvg[pretex=\relscale{0.4},width=\columnwidth]{chapters/figuresChBehaviour/loadCellProfile}
+\end{center}
+\vspace{-5mm}
+\caption{Example load cell activation profile during stepping on a rung.}
+\label{fig:loadCellProfile}
+\end{figure}
+
 \textbf{Behaviour Data:} The performance of the animals was recorded using a high-speed and high-resolution video camera (PointGrey Flea3 FL3-U3-13S2M-CS, 1280x960 @ 120 fps). Behaviour was run in the dark, under infrared illumination using super-bright LED strips. Tracking of the nose was achieved by background subtraction and connected component labeling of segmented image elements, of which we then selected the furthermost point along the major axis of the ellipse best fit to the largest segmented object.
 
 \textbf{Video Classification:} Ethogram classification was done on a frame-by-frame analysis of the high-speed video aligned on first contact with the manipulated rail. The frame of first contact was defined as the first frame in which there is noticeable movement of the rail caused by animal contact. Three main categories of behaviour were observed to follow the first contact: compensation, investigation and halting. Behaviour sequences were first classified as belonging to one of these categories and their onsets and offsets determined by the following criteria. Compensation behaviour is defined by rapid, whole-body movement that results in an adaptive postural correction to the perturbation. Onset of this behaviour is defined by the first frame in which there is visible rapid contraction of the body musculature following first contact. Investigation behaviour consists of periods of targeted interaction with the rails, often involving manipulation of the freely moving obstacle with the forepaw. The onset of this behaviour is defined by the animal orienting its head down to one of the manipulated rails, followed by subsequent interaction. Halting behaviour is characterized by a period in which the animals stop their ongoing motor program, and maintain the same body posture for several seconds, with occasional movements of the head, but without orienting specifically to the manipulated rails. They tend to look up and to the sides as if in a state of confusion, or uncertainty about what to do next. Onset of this behaviour is defined by the moment where locomotion and other motor activities besides movement of the head come to a stop. A human classifier blind to the lesion condition was given descriptions of each of these three main categories of behaviour and asked to note onsets and offsets of each behaviour throughout the video.
