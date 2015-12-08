@@ -198,6 +198,14 @@
 \usepackage{csquotes}
 \renewcommand*{\mkcitation}[1]{ #1}
 
+%PGF packages
+\usepackage{pgf}
+\newcommand\inputpgf[2]{{
+\let\pgfimageWithoutPath\pgfimage
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[##1]{chapters/figuresChBehaviour/##2}}
+\input{#1/#2}
+}}
+
 %SVG packages
 \usepackage{ifluatex}
 \ifluatex
