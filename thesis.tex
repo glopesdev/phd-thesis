@@ -25,9 +25,9 @@
 %%% 
 %%% ITQB's paper size is B5
 %%% 
-\documentclass[11pt,lot,lof,b5paper]{puthesis} 
-\usepackage[utf8]{inputenc}
+\documentclass[11pt,lot,lof,b5paper]{puthesis}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \newcommand{\proquestmode}{}
 
 % I prefer proquestmode to be off for electronic copies for normal use, since the colored links are less distracting. However when printed in black and white, the colored links are difficult to read. 
@@ -134,11 +134,11 @@
 %\usepackage{amsfonts}
 
 %%% For figures
-\usepackage{subcaption}
+%\usepackage{subcaption}
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \expandafter\def\csname ver@subfig.sty\endcsname{}
-%\usepackage{subfig,rotate}
+\usepackage{subfig,rotate}
 
 %%% for inline lists
 \usepackage{paralist}
@@ -170,6 +170,9 @@
 %set parameters for longtable:
 % default caption width is 4in for longtable, but wider for normal tables
 \setlength{\LTcapwidth}{\textwidth}
+
+%hyphenation packages
+\usepackage{hyphenat}
 
 %bibliography packages
 \usepackage[]{apacite}
@@ -255,6 +258,7 @@
   {\end{list}}
 
 %set exceptions for hyphenation
+\hyphenation{Gross-hirns}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
