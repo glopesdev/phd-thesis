@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary[arrows,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+  \node[draw=none] (ethogram) {\includegraphics[width=\textwidth]{elements/ethogram}};
+  \node[draw=none,above left=-2mm and -9.9cm of ethogram] (A) {A};
+  \node[draw=none,above left=-2mm and -5mm of ethogram] (B) {B};
+\end{tikzpicture}
+\end{document}
