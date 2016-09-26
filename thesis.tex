@@ -178,6 +178,27 @@
 
 %bibliography packages
 \usepackage[]{apacite}
+\usepackage{etoolbox}
+\usepackage{environ}
+\newtoggle{bibdoi}
+\newtoggle{biburl}
+\makeatletter
+\undef{\APACrefURL}
+\undef{\endAPACrefURL}
+\undef{\APACrefDOI}
+\undef{\endAPACrefDOI}
+\long\def\collect@url#1{\global\def\bib@url{#1}}
+\long\def\collect@doi#1{\global\def\bib@doi{#1}}
+\newenvironment{APACrefURL}{\global\toggletrue{biburl}\Collect@Body\collect@url}{\unskip\unskip}
+\newenvironment{APACrefDOI}{\global\toggletrue{bibdoi}\Collect@Body\collect@doi}{}
+\AtBeginEnvironment{thebibliography}{
+ \pretocmd{\PrintBackRefs}{%
+  \iftoggle{bibdoi}
+    {\iftoggle{biburl}{\unskip\unskip doi:\bib@doi}{}}
+    {\iftoggle{biburl}{\unskip\unskip}{}}
+  \togglefalse{bibdoi}\togglefalse{biburl}%
+  }{}{}
+}
 
 %\setcitestyle{authoryear,round,semicolon,aysep={},yysep={,}}
 
