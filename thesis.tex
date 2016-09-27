@@ -158,6 +158,12 @@
 \expandafter\def\csname ver@subfig.sty\endcsname{}
 \usepackage{subfig,rotate}
 
+%%% For video references
+\newcounter{video}
+\newcommand{\videolabel}[1]{%
+  \refstepcounter{video}\label{#1}%
+}
+
 % Longtable lets you have tables that span multiple pages.
 \usepackage{longtable}
 \usepackage{pdflscape}
