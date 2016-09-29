@@ -1,5 +1,51 @@
-				
-\section{Rapid Prototyping of Behaviour Experiments}
+
+\section{Methods}
+
+\subsection{The Modular Behaviour Box}
+
+At the outset it was decided that the scale of the modular architecture would probably have to match a given animal model, given the vastly different size scales between rodents, cats and primates. Our animal model of choice is the rodent \emph{rattus norvegicus}, and all of our proposed design choices target its size scale. Small adjustments could, however, be reasonably made up to a point for other mammals of similar stature, such as mice.
+
+The main component and interface of the modular box is the individual $1\times 1$ module (Figure \ref{fig:modules}A). This module defines a standardized footprint ($\SI{12}{\centi\meter}\times \SI{12}{\centi\meter}$), against which all other modules are measured. Every newly fabricated module is built to specification to match a multiple of this standardized footprint (e.g. it is possible to have $2\times 1$, $2\times 2$, $4\times 1$ or any other multiple combination of the standard size). Inside the module footprint the module designer places a single logical component of a behaviour box and ensures that it can operate in isolation. Figure \ref{fig:modules} shows some examples of reusable modules developed throughout the project.
+
+\begin{figure}
+\centering
+\includestandalone[scale=0.90]{chapters/figuresChTools/modules}
+\caption{Some examples of standardized behaviour modules. (\textbf{A}) Detail of a $1\times 1$ module mounted in support frame. Fixation is achieved by driving a screw through post-insertion nuts placed in the structural framing (see text). (\textbf{B}) Example reward port module which can be floor- or wall-mounted. All relevant electronics and water distribution circuits are assembled on the back of the module (not shown). (\textbf{C}) Wall-mounted reconfigurable obstacle course stepper module. Stepper motors mounted on the back of the module allow for dynamic reconfiguration of the orientation of each step. (\textbf{D}) Floor-mounted obstacle course step pair. Multiple of these modules can be tiled together to assemble obstacle courses of arbitrary length.}
+\label{fig:modules}
+\end{figure}
+
+\begin{figure}
+\centering
+\includestandalone[scale=1.00]{chapters/figuresChTools/box}
+\caption{Example of a linear shuttling box assembled from a $\SI{1}{\meter}\times \SI{1}{\meter}$ modular structure using reward port and obstacle course step modules.}
+\label{fig:box}
+\end{figure}
+
+\begin{figure}
+\centering
+\includestandalone[scale=0.90]{chapters/figuresChTools/box3d}
+\caption{Side view of the linear shuttling box.}
+\label{fig:box3d}
+\end{figure}
+
+\begin{figure}
+\centering
+\includestandalone[scale=1.00]{chapters/figuresChTools/verticalBox}
+\caption{Example of vertical assembly. (\textbf{A}) Detail of a $1\times 1$ wall-mounted platform module. (\textbf{B}) Example of a vertical maze configuration.}
+\label{fig:verticalBox}
+\end{figure}
+
+One of the principal requirements for assembling a box is fastening all its components together. By having a standard footprint, it is possible to design a set of regularly spaced mounting points that allows the experimentalist to quickly generate an entirely new configuration by simply swapping modular components inside the box (Figure \ref{fig:box}, \ref{fig:box3d}). For this work, we took advantage of an existing aluminium structural framing system (Bosch Rexroth, DE) to build the common mounting points (Figure \ref{fig:modules}A). Modules are fastened against post-insertion nuts which are able to slide across the whole length of the aluminium rail. Each of the modules is fastened by four screws, one in each corner. In order to ensure modules can be tightly and securely fixed one next to the other, we used a system of regularly spaced double rails (Figure \ref{fig:box}). This gives the frame the flexibility to easily reposition and rearrange individual modules tiling the entire footprint of any arbitrarily large box.
+
+If the support frame is laid out vertically, it is possible to create modular walls of arbitrary dimensions. Some of the modules can be mounted equally well on a vertical or horizontal configuration, such as reward ports (Figure \ref{fig:modules}B). The three-dimensionality of the design has even been exploited to create vertical mazes (Figure \ref{fig:verticalBox}) to great success.
+
+Throughout the project we made the base of every module from \SI{5}{\milli\meter} acrylic pieces. While not an absolute requirement for the design, this choice of plastic material has the advantage that a laser cutter can be used to very quickly produce a large collection of custom-built modules. In addition, patterns can be engraved or cut on the base to provide additional mounting points for hardware embedded in the module. The use of such rapid prototyping fabrication tools alongside with off the shelf available electronic sensors and actuators meant we were able to completely redesign the entire behaviour box, sometimes in a matter of days.
+
+\subsection{The Bonsai Framework}
+
+All the results concerning the Bonsai framework have been published as:
+\fullcite{Lopes2015a}
+\bigskip
 
 Modern scientific experiments crucially depend on the control and monitoring of many parallel streams of data. Multiple measurement devices, from video cameras, microphones, and pressure sensors to neural electrodes, must simultaneously send their data in real-time to a recording system. General purpose digital computers have gradually replaced many of the specialized analog and digital technologies used for this kind of data acquisition and experiment control, largely due to the flexibility of programming and the exponential growth in computing power. However, the serial nature of programming instructions and shared memory makes it a challenge, even for experienced programmers, to develop software that can elegantly deal with the asynchronous, parallel nature of scientific data.
 
@@ -9,32 +55,7 @@ These difficulties lead to increased development times when setting up an experi
 
 Here we describe Bonsai, an open-source visual programming framework for processing data streams. The main goal of Bonsai is to simplify and accelerate the development of software for acquiring and processing the many heterogeneous data sources commonly used in (neuro) scientific research. We aim to facilitate the fast implementation of state-of-the-art experimental designs and to encourage the exploration of new paradigms. The framework has already been successfully used for many applications. In the following we will specifically highlight Bonsai's utility in neuroscience for monitoring and controlling a diverse range of behaviour and physiology experiments.
 
-\subsection{Getting Started with Bonsai}
-
-\subsubsection{Community}
-
-The Bonsai framework can be downloaded at \url{https://bitbucket.org/horizongir/bonsai} and installed on Windows operating systems starting with Windows 7 and above. The website is organized into different sections: Downloads (where the latest installer is located), Wiki (with a “Getting Started” guide, tutorials and (FAQ) frequently asked questions), and Issues (where bugs can be reported). We have also created a user forum (address is listed in the FAQ section) where the community of Bonsai users have been sharing their feedback, questions and experiences.
-
-A video tutorial introduction to Bonsai is included with this publication (Supplementary Video 1).
-
-\subsubsection{Extending Bonsai}
-
-Bonsai was designed from the outset to support many different layers of extensibility:
-\begin{enumerate}[(a)]
-    \item Dataflows: The first layer is through the creation of Bonsai dataflow files themselves. Existing dataflows can be directly reused inside other dataflows as nested nodes. This allows for the sharing of reusable dataflow design patterns between applications.
-    \item Python Scripting: Bonsai supports embedded scripting using IronPython 2.7. Specifically, Bonsai includes three types of Python nodes: PythonTransform, PythonCondition, and PythonSink, which all operate by calling a user-defined Python function described by a script. Below we include a simple example of a PythonTransform for rescaling data:
-
-    \begin{lstlisting}[language=Python]
-# Declare transform output type
-@returns(float)
-def process(value):
-    return value / 255.0
-    \end{lstlisting}
-
-    \item NuGet: Bonsai modules are natively written in C\# or other.NET languages. The NuGet package manager has emerged as the defacto standard for the sharing of code between.NET developers. Bonsai includes a full NuGet client which manages local package versions, provides access to the curated feed of standard Bonsai packages, and allows for the quick sharing of modules between Bonsai users through either NuGet or other remote and local package sources. Tutorials and examples on how to create new Bonsai modules are included in the Wiki.
-\end{enumerate}
-
-\subsection{Architecture}
+\subsubsection{Architecture}
 
 Scientific data, like the world we live in, is inherently parallel. To monitor this complexity, modern experimenters are often forced to use multiple electronic instruments simultaneously, each with their own independent sampling rates. As data arrives at the acquisition computer, there are two main approaches to log and process these asynchronous data streams. The first approach is to use a polling strategy: a single sequential process in the computer runs a processing loop that goes through each device in sequence and gathers the available data. In this case, data from only one device is being collected and manipulated at any point in time. The second approach is to use an event-driven (reactive) architecture: processes are setup in parallel to collect data from all the devices simultaneously. Whenever new data is available, notifications are sent to the appropriate software routines that collect and process the data as soon as possible. When only a single processor is available, the difference between these two strategies is negligible: only one instruction at a time can be executed by the computer. However, with modern multi-processor cores and dedicated data transfer circuits, the performance difference between the two approaches will significantly influence the throughput of a data acquisition and processing system. Unfortunately, software tools to support and facilitate the “reactive” approach to data stream processing are only just now starting to be adopted and most software systems are still built from the sequential composition of simple program routines. Many of the assumptions of the sequential processing scenario do not scale to handle parallel execution, especially when shared memory and resources are involved.
 
@@ -77,7 +98,7 @@ Finally, we have built into Bonsai the ability to group nodes hierarchically. In
 
 Bonsai was designed to be a modular framework, which means it is possible to extend its functionality by installing additional packages containing sources and combinators developed for specific purposes. New packages can be written using C\# or any of the.NET programming languages. Python scripts [via IronPython \cite{IronPython2014}] can be embedded in the dataflow as transforms and sinks, allowing for rapid integration of custom code. All functionality included in Bonsai was designed using these modular principles, and we hope to encourage other researchers to contribute their own packages and thereby extend the framework to other application domains. At present, the available packages include computer vision and signal processing modules based on the OpenCV library \cite{Itseez2014}. Drivers for several cameras and interfaces to other imaging and signal acquisition hardware were integrated as Bonsai sources and sinks, including support for Arduino microcontrollers \cite{Banzi2014}, serial port devices and basic networking using the OSC protocol \cite{Wright2003}. Given the specific applications in the domain of neuroscience, we also integrated a number of neuroscience technology packages. The Ephys package, for example, builds on the Open Ephys initiative for the sharing of electrophysiology acquisition hardware \cite{Voigts2013} by providing support for the Rhythm open-source USB/FPGA interface (Intan Technologies, US). Therefore, the next generation tools for electrophysiology can already be used inside Bonsai, the acquired physiology data implicitly integrated with other available data streams and thus easily assembled into a powerful and flexible experimental neuroscience platform.
 
-\subsection{Advanced Operators}
+\subsubsection{Advanced Operators}
 
 The most common application of Bonsai is the acquisition and processing of simple, independent data streams. However, for many modern experiments, basic acquisition and storage of data is often not sufficient. For example, it can be convenient to only record the data aligned on events of interest, such as the onset of specific stimuli. Furthermore, neuroscience experiments often progress through several stages, especially for behavioral assays, where controlled conditions vary systematically across different sessions or trials. In order to enforce these conditions, experiments need to keep track of which stage is active and use that information to update the state of control variables and sensory processing. These requirements often cannot be described by a simple linear pipeline of data, and require custom code to handle the complicated logic and bookkeeping of experimental states. Below we describe a set of advanced Bonsai operators that can be used to flexibly reconfigure data processing logic to cover a larger number of scenarios. These operators and their applications are all built on the single idea of slicing a data stream into sub-sequences, called windows, which are then processed independently and, potentially, in parallel (Figure \ref{fig:bonsaiAdvanced}).
 
@@ -100,25 +121,7 @@ In the Bonsai dataflow model, dataflows encapsulated in a SelectMany group can b
 
 Many of the control tasks in experiments have this sequential trial-based structure, which has allowed us to rapidly prototype complex behaviour assays, such as closed-loop rodent decision making tasks, simply by leveraging the flexibility of the data stream slicing operators.
 
-\subsection{Under the Hood}
-
-\subsubsection{Computational Overhead}
-
-Bonsai takes full advantage of the flexibility of C\# and its Just-In-Time (JIT) compiler to bring the computational overhead of running the framework to zero. This is possible due to the fact that the graphical dataflows in Bonsai are actually specifying syntactically correct C\# code by means of an expression tree. When the dataflow is executed, C\# code is generated for assembling and running the pipeline. This code is ultimately compiled into native machine language before execution, which has the consequence that running a Bonsai dataflow is as fast as if one wrote the equivalent Rx code manually. In fact, this also means every Bonsai module is just a standard C\# class exposing methods working on Rx's observable interface, which makes it possible to reference every single Bonsai package from a standard.NET application and just use the module functionality directly.
-
-\subsubsection{Concurrency}
-
-The level of concurrency and parallelism in Bonsai entirely depends on the structure of each individual dataflow and the specific computer hardware involved. Typically, each hardware device source (e.g., a camera) runs independently in its own logical thread. Some sources can occasionally share threads when the underlying device architecture allows for it. For example microcontroller sources coming from the same USB port effectively require sharing a single communications channel, but this is logically abstracted from the developer so there is no need to worry about handling multiplexed messages.
-
-The specialized handling of concurrency introduced by merging different processing streams is done using dedicated Rx concurrency operators that are exposed graphically through the language. Operators located downstream from the merge point can treat the merged sequence as if it was a single sequential data source. This means most Bonsai operators are actually concurrency-agnostic, meaning they don't have to worry about concurrency at all: they simply assume their inputs are processed sequentially. This functional approach allows Bonsai operators to be simple to program, reliable and extremely performant.
-
-Finally, some Bonsai operators introduce local concurrency implicitly to maximize performance. For example, many of the data logging sinks actually write to disk in parallel with the arrival of data. This prevents processor-heavy routines, such as video compression, to stall the pipeline and allow for online execution to proceed as fast as possible. From the point of view of the developer, however, such optimizations happen transparently.
-
-\subsubsection{Time}
-
-Being a fully asynchronous framework, Bonsai has to deal with code executing logically in many different processors. There is no particular assumption about time in the framework other than the sequential flow of data through the pipeline, but facilities are in place to help the synchronization and timing of data. For example, the Timestamp operator provides access to hardware performance timers included in modern processors to timestamp event notifications, across the pipeline, using a shared high resolution clock. However, it should be noted that this only applies to processes occurring centrally: for precise sub-millisecond synchronization of physical events happening outside the computer (e.g., stimulation pulse train and electrophysiology data) we still recommend the classical sharing of voltage or optical sync pulses logged simultaneously in each device.
-
-\subsection{Alternatives to Bonsai}
+\subsubsection{Alternatives to Bonsai}
 
 Although graphical user interfaces have played a crucial role in the widespread proliferation of computing technology throughout various scientific fields, the majority of these interfaces tend to be applied to relatively narrow domains, such as the operation of a specific instrument. Their goal is often to provide access to all the various configuration parameters of the hardware and to provide basic data acquisition functionality. There is often no opportunity to parameterize or condition the behaviour of the instrument beyond the possibilities presented by the interface, and interconnections with other devices are often limited to simple hardware triggers. The alternative, when available, is to access low-level application programming interfaces (APIs), and program the desired behaviour from scratch.
 
@@ -141,57 +144,3 @@ However, in contrast to LabVIEW or Simulink, Bonsai adopts a very different stra
 One important caveat of developing asynchronous systems is that debugging can be more difficult in situations where the precise timing and ordering of events is required to reproduce an offending behaviour. In synchronized and sequential execution environments, one can easily go step by step through the precise cascade of transformations that resulted in a problem. In contrast, when multiple processes are executing concurrently, it can be harder to analyze the program flow in a similarly reproducible, deterministic manner. However, it should be noted that this issue is not unique to reactive environments with real asynchronous devices. A sequential polling strategy will be equally deficient in reproducing a particular execution sequence when data from parallel input devices is being accessed.
 
 Another important caveat is that Bonsai currently runs exclusively in Windows operating systems. However, Microsoft has recently open-sourced the execution engine of the.NET framework and will pursue implementations for all the major operating systems (Linux/Mac). This raises the interesting possibility of eventually extending the Bonsai user base into these important platforms.
-
-\subsection{Applications}
-
-The validation of Bonsai was performed by using the framework to implement a number of applications in the domain of neuroscience (Figure \ref{fig:bonsaiApplications}). The breadth of technologies at use in this field demands that modern experiments be able to handle many heterogeneous sources of data. Experimenters need to routinely record video and sensor data monitoring the behaviour of an animal simultaneously with electrophysiology, optical reporters of neural activity or other physiological measures. Online manipulation and visualization of data is a fundamental part of the experiment protocol for many of the reported techniques. In the following, we highlight some of these practical applications of Bonsai in more detail in order to illustrate both “best practices” and implementation strategies.
-
-\begin{figure}
-\begin{center}
-\scalebox{0.87}{\includegraphics[width=\linewidth]{chapters/figuresChTools/bonsaiApplications.png}}
-\end{center}
-\vspace{-5mm}
-\caption{Example neuroscience experimental setups using Bonsai.}
-\label{fig:bonsaiApplications}
-\end{figure}
-
-One of the first use cases driving the development of Bonsai was the automated online tracking of animal behaviour using video. The most common tracking application involves chaining together operators for image segmentation and binary region analysis to allow the extraction of the spatial location of an animal over time (Figures \ref{fig:bonsaiApplications}A,B). The same technique can easily be extended to track different kinds of objects, such as eyes or experimental manipulanda in human psychophysics experiments (Figure \ref{fig:bonsaiApplications}C), provided adequate illumination contrast and the appropriate choice of a method for segmentation. These image processing tools can also be used to acquire and process physiological data in neural imaging setups, where it is now possible to record bioluminescent or fluorescent reporters of neural activity during behaviour. For example, Figure \ref{fig:bonsaiApplications}B demonstrates simultaneous measurement of animal behaviour and neural activity using bulk fluorescence calcium imaging in the mouse brain recorded with a CCD sensor and a fiberoptic system \cite{Tecuapetla2014}.
-
-Raw video data from modern high-resolution, high-speed cameras can be expensive and cumbersome to store. Online video compression and storage sinks were implemented taking advantage of parallelism to avoid frame loss. Video compression is processing intensive and can compromise data acquisition if reading the next frame has to wait for the previous frame to be fully encoded. One solution is to buffer incoming frames and compress them in parallel with the rest of the processing stream. By encapsulating this behaviour into a Bonsai sink, it became easy to incorporate video recording and compression functionality into any image processing pipeline (Figures \ref{fig:bonsaiApplications}A–E,G,H).
-
-While simple image processing techniques can easily extract continuous two-dimensional measures of animal location over time, it often becomes the case that the experimenter is concerned with tracking the detailed behaviour of specific features in the animal's body, such as head pose. This is an essential component in neurophysiology or stimulation experiments in freely moving animals, where ongoing behaviour is the central constraint in interpreting neural responses and manipulations. However, identifying such features and reconstructing their position and orientation in 3D space is a challenging computer vision problem. A common solution is to use planar fiducial markers of known geometry \cite{Kato1999, Garrido-Jurado2014} (Figure \ref{fig:bonsaiApplications}D). The computer vision research community has developed some open-source software solutions to this problem \cite{Garrido-Jurado2014}, which have been integrated into Bonsai to allow the possibility of easily and flexibly incorporating online 3D fiducial tracking in video streams. This approach has been used successfully to record 3D head movements of a mouse under optogenetic stimulation in a decision-making task (Figure \ref{fig:bonsaiApplications}D).
-
-One final, but important application of video stream processing is in the development of closed-loop interfaces, where the actions of an animal directly modulate manipulations under the experimenter's control. This kind of experiment requires fast online analysis of behaviour and physiological variables of interest that are subsequently coupled to hardware control interfaces. In Figure \ref{fig:bonsaiApplications}E, real-time stimulation conditioned to a region in space was implemented by analyzing the position of an animal in a square arena. Whenever the animal found itself inside a specified region of interest, a signal was sent to an Arduino controller which was then used to drive optogenetic stimulation of specific neural circuits.
-
-Another key data type that is commonly processed by Bonsai dataflows is buffered time-series data. This type of data usually arises from audio, electrophysiology or other digital acquisition systems where multiple data samples, from one or more channels, are synchronously acquired, buffered and streamed to the computer. These buffers are often represented as data matrices, where rows are channels and columns represent individual data samples through time, or vice-versa. Support for simple band-pass filters, thresholding and triggering allowed us to build flexible spike detection and waveform extraction systems (Figure \ref{fig:bonsaiApplications}F). Using Intan's Rhythm API, we integrated into Bonsai support for a variety of next-generation electrophysiology devices using Intan's digital amplifier technology, such as the Open Ephys acquisition system \cite{Voigts2013} or Intan's evaluation board (RHD2000, Intan Technologies, US). This system was successfully used to acquire and visualize simultaneous recordings from dense silicon probes where spikes from a loose-patch juxtacellular pipette were used as triggers to align and extract waveform data appearing on the multi-channel extracellular probe. Responses from every silicon probe site could then be superimposed on an accurate rendition of the probe geometry, in real-time.
-
-The ability to rapidly integrate new modules allowed us to support the development and cross-validation of new tools for behavioral neuroscience. A paradigmatic example was the flyPAD, a new method for quantifying feeding behaviour in Drosophila melanogaster by measuring changes in electrode capacitance induced by the proboscis extension of a fly \cite{Itskov2014}. The integration of the flyPAD in Bonsai allowed researchers to quickly get started using this approach to design new experiments. Furthermore, it also allowed the validation of the tool by enabling simultaneous acquisition of high-speed video recordings of fly behaviour which were later used for annotation and classification of the sensor feeding traces (Figure \ref{fig:bonsaiApplications}G).
-
-In a different set of experiments, Bonsai was used to implement a variation on a popular two-alternative forced choice (2AFC) decision-making task for rodents (Figure \ref{fig:bonsaiApplications}H). In this type of task, animals are placed in an environment with three “ports.” They are presented with a stimulus in the center port and afterwards report their perception of the stimulus by going either to the left or right choice ports. In the variation we present in this work, the two choice ports were replaced by regions of interest where the activity of the animal is analyzed using computer vision. This example offered unique challenges as it combined sophisticated sequential control of a task environment with continuous data stream processing of video and sensor data.
-
-The integration of all these diverse components for data acquisition and experiment control does not only allow for the rapid deployment of established protocols. In fact, the modular nature of their integration (i.e., how they can be combined together) opens up new avenues for research, by allowing a rich, rapid exploration of novel methodologies. To demonstrate this, we created a dynamic virtual environment for freely moving rodents where the visual presentation of a stimulus is tightly controlled in closed-loop to the actions of the animal. We used a projection setup similar to the low-cost multi-touch sensing table proposed by \cite{Han2005}, where a visible light rear-projection system is coupled with infrared illumination and an infrared imaging sensor to detect in real-time where the animal is located with respect to the visual display surface (Supplementary Video 2).
-
-\subsection{Discussion}
-
-After about a year of using Bonsai in an active neuroscience research institute, dozens of different experimental protocols and data analysis pipelines have been successfully implemented using the provided building blocks \cite{Gouvea2014, Itskov2014, Tecuapetla2014}. We were surprised by the diversity of applications and by the pace at which new modules and devices were developed and integrated.
-
-The performance achieved by Bonsai dataflow processing was an important consideration throughout (Box 2). Video processing can be particularly challenging to handle given the bandwidth required to quickly acquire and process large data matrices. In order to correlate continuous measures of behaviour with neural activity, it is useful for those measurements to have both high spatial and high temporal resolution. Using Bonsai, we were able to simultaneously process and compress grayscale image sequences from high resolution ($1280 \times 960$) and high frame rate (120 Hz) cameras using standard off-the-shelf desktop computers (Intel Core i7, 8 GB RAM). In fact, many of the reported assays use multiple (>2) such video streams with success and actually process the behaviour video online either to control states of the behaviour protocol or to pre-process video data for offline analysis.
-
-One of the areas where we see the application of Bonsai becoming most significant is in the development of dynamic behaviour assays (environments) using reactive control strategies. Brains evolved to generate and control behaviors that can deal with the complexity of the natural world. However, when neuroscientists try to investigate these behaviors in the lab, it is often difficult to design equivalent environmental complexity in a controlled manner. As an example, consider a simple foraging scenario in which a land animal must collect, in a timely manner, food items that become available at random intervals in many sites. If the item is not collected in time, it rots or gets eaten by competitors. In the case of a single foraging site, a FSM description intuitively represents the workings of the environment (Figure \ref{fig:bonsaiStateMachine}A). However, let us now consider a situation where the environment has two of these food sites operating independently, thus introducing the possibility of different events occurring simultaneously at each of the sites. If our environment is modeled as a finite-state machine, then we must represent every possible combination of states and transitions, as in Figure \ref{fig:bonsaiStateMachine}B. In the classical state machine formalism the machine can only be in one state at a time, which means we now need to model each state as the combination of the individual independent states at each reward location. Furthermore, because transitions between these states are asynchronous and independent, we thus have edges between nearly every pair of nodes, as each reward site can change its state at any point in time relative to the other.
-
-\begin{figure}
-\begin{center}
-\scalebox{1.00}{\includegraphics[width=\linewidth]{chapters/figuresChTools/bonsaiStateMachine}}
-\end{center}
-\vspace{-5mm}
-\caption{Describing the behaviour of dynamic environments using either state-machines or dataflows.}
-\label{fig:bonsaiStateMachine}
-\end{figure}
-
-How would designing such a scenario feel like in a reactive programming language? Figure \ref{fig:bonsaiStateMachine}C shows a possible specification of the 1-site foraging task in reactive terms. In this case, we have two sources of events from the environment: one timer signaling the availability of reward (A); and a sampling event (S) which is triggered every time the animal checks the location for food. Both of these events can occur independently of each other, but when a sampling event coincides with reward availability (C), then reward (R) is delivered. Because this description is intrinsically asynchronous and parallel, it makes it extremely easy to scale the task to a larger set of locations: just replicate the dataflow for each of the other locations (Figure \ref{fig:bonsaiStateMachine}D). In this example, the design space was made more intuitive by introducing the parallel and asynchronous nature of a real-world situation into our modeling formalism.
-
-Another difficulty of the classical state machine formalism is dealing with continuous variables. The natural environment provides constant real-time feedback that tightly correlates with the actions of an animal. Reproducing such closed-loop interaction and manipulating its dynamics is a necessary tool for fully investigating brain function. Such models are virtually impossible to represent in a machine of finite states, given the potential infinitude of feedback responses. However, the dataflow formalism of asynchronous event sources can easily accommodate such models. In fact, this is their natural battleground; nodes represent reactive operators that promptly respond to input values broadcasted by event sources. These models of asynchronous computation are thus ideal for recreating the complex discrete and continuous aspects of natural environments that brains evolved to master. We thus propose Bonsai as a new tool for neuroscientists trying to understand how the brain deals with real world complexity.
-
-\pagebreak
-
-
