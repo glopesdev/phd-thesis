@@ -146,9 +146,9 @@
     \phantomsection
   \else
   \fi
-  \addcontentsline{toc}{section}{\textbf{Author Contributions and Financial Support}}
+  \addcontentsline{toc}{section}{\textbf{Financial Support}}
   \begin{center}
-  \Large \textbf{Author Contributions}
+  \Large \textbf{Financial Support}
   \end{center}
   \@contrib
   \clearpage}
