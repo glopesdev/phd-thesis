@@ -159,7 +159,7 @@
     \phantomsection
   \else
   \fi
-  \addcontentsline{toc}{section}{\textbf{Acknowledgments}}
+  \addcontentsline{toc}{section}{\textbf{Acknowledgements}}
   \begin{center}
   \Large \textbf{Acknowledgments}
   \end{center}
