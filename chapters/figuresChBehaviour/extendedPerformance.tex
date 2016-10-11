@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary[arrows,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+  \node[draw=none] (learning) {\includegraphics[width=0.5\textwidth]{elements/timetocross_extended}};
+  \node[draw=none,above left=-3mm and -4mm of learning] {A};
+  
+  \node[draw=none,right=1mm of learning] (slipanalysis) {\includegraphics[width=0.5\textwidth]{elements/slipanalysis}};
+  \node[draw=none,above=-2mm of slipanalysis] {paw slips};
+  \node[draw=none,above left=-3mm and -4mm of slipanalysis] {B};
+
+  \node[draw=none,below=5mm of learning] (slipforelimb) {\includegraphics[width=0.5\textwidth]{elements/slipanalysis_forelimb}};
+  \node[draw=none,above=-2mm of slipforelimb] {forelimbs};
+  \node[draw=none,above left=-3mm and -4mm of slipforelimb] {C};
+  
+  \node[draw=none,right=1mm of slipforelimb] (sliphindlimb) {\includegraphics[width=0.5\textwidth]{elements/slipanalysis_hindlimb}};
+  \node[draw=none,above=-2mm of sliphindlimb] {hindlimbs};
+  \node[draw=none,above left=-3mm and -4mm of sliphindlimb] {D};
+\end{tikzpicture}
+\end{document}
