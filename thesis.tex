@@ -159,7 +159,8 @@
 \usepackage{subfig,rotate}
 
 %%% For video references
-\newcounter{video}
+\newcounter{video}[chapter]
+\def\thevideo{\thechapter.\arabic{video}}
 \newcommand{\videolabel}[1]{%
   \refstepcounter{video}\label{#1}%
 }
