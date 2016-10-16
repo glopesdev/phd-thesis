@@ -16,8 +16,8 @@
 \def\abstractport#1{\gdef\@abstractport{#1}}
 \long\def\@abstract{\@latex@error{No \noexpand\abstract given}\@ehc}
 \newcommand*{\frontmatter}{
-  \pagenumbering{roman}
-  \setcounter{page}{2}
+  % \pagenumbering{roman}
+  % \setcounter{page}{2}
   }
 \newcommand*{\mainmatter}{\pagenumbering{arabic}}
 \newcommand*{\makelot}{}

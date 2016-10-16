@@ -270,6 +270,9 @@
   }
   {\end{list}}
 
+% create a blank page
+\newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
+  
 %set exceptions for hyphenation
 \hyphenation{Gross-hirns}
 
@@ -321,8 +324,10 @@
 % 
 % Files can be edited in Illustrator
 % 
+\pagenumbering{gobble}
 \includepdf[pages={1}]{chapters/Cover.pdf}
-\includepdf[pages={1}]{chapters/TitlePage.pdf}
+\pagenumbering{roman} \setcounter{page}{2} \blankpage
+\includepdf[pages={1}]{chapters/TitlePage.pdf} \blankpage
 
 \maketitlepage
 \makefrontmatter
