@@ -56,6 +56,7 @@
 \frontmatter
 \makecopyrightpage
 \makededication
+\blankpage
 \makeacknowledgments
 \makeabstractport\makeabstract\makecontrib
 \maketoc
