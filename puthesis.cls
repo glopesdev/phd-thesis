@@ -168,6 +168,7 @@
 \def\makededication{
   \ifx\@dedication\undefined
   \else
+    \thispagestyle{empty}
     \vspace*{1.5in}
     \begin{flushright}
       \@dedication
