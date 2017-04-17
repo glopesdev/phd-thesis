@@ -10,7 +10,7 @@ call:cleanup
 
 :: Run pdflatex -&gt; bibtex -&gt; pdflatex -&gt; pdflatex  
 pdflatex --enable-write18 %2  
-bibtex  %2  
+biber %2  
 :: If you are using multibib the following will run bibtex on all aux files  
 :: FOR /R . %%G IN (*.aux) DO bibtex %%G  
 pdflatex %2  
@@ -26,10 +26,10 @@ START "" "C:\Progra~1\SumatraPDF\SumatraPDF.exe" %3 -reuse-instance
 :cleanup  
 del *.dvi
 del *.out
-:: del *.log 
-:: del *.aux  
-:: del *.bbl    
-:: del *.blg  
-:: del *.brf  
+del *.log 
+del *.aux  
+del *.bbl    
+del *.blg  
+del *.brf  
 
 goto:eof
